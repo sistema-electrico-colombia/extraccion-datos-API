@@ -65,7 +65,8 @@ class ReadDB:
              'FAZNI': [(0, 'Recaudo FAZNI', 'Sistema', 'Diaria')],
              'PRONE': [(0, 'Recaudo PRONE', 'Sistema', 'Diaria')],
              'FAER': [(0, 'Recaudo FAER', 'Sistema', 'Diaria')],
-             'ExpoEner': [(0, 'Exportaciones Energía', 'Sistema', 'Horaria')]
+             'ExpoEner': [(0, 'Exportaciones Energía', 'Sistema', 'Horaria')],
+             'AporCaudal': [(0, 'Aportes Caudal por Rio', 'Rio', 'Diaria')]
              }
 
     def get_collections(self, coleccion):
@@ -81,6 +82,7 @@ class ReadDB:
             end_date: end date consult data
         Returns: DataFrame with the raw Data
         """
+        
         if coleccion not in self.inventario_metricas.keys():
             print('No existe la colección {}'.format(coleccion))
             return pd.DataFrame()
@@ -120,6 +122,7 @@ class ReadDB:
                     aux = False
                 condition = ((end - start_date).days > 30 | (end - end_date).days != 0) | aux
         elif self.inventario_metricas[coleccion][metrica][3] == 'Diaria' and coleccion == 'CapEfecNeta':
+            print("Entra")
             end = end_date
             condition = True
             aux = True
