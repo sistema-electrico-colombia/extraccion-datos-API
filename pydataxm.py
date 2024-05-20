@@ -66,7 +66,8 @@ class ReadDB:
              'PRONE': [(0, 'Recaudo PRONE', 'Sistema', 'Diaria')],
              'FAER': [(0, 'Recaudo FAER', 'Sistema', 'Diaria')],
              'ExpoEner': [(0, 'Exportaciones Energía', 'Sistema', 'Horaria')],
-             'AporCaudal': [(0, 'Aportes Caudal por Rio', 'Rio', 'Diaria')]
+             'AporCaudal': [(0, 'Aportes Caudal por Rio', 'Rio', 'Diaria')],
+             'AporCaudalMediHist': [(0, 'Aportes Media Histórica Caudal por Rio', 'Rio', 'Diaria')]
              }
 
     def get_collections(self, coleccion):
