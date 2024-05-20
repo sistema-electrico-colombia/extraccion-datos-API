@@ -67,7 +67,9 @@ class ReadDB:
              'FAER': [(0, 'Recaudo FAER', 'Sistema', 'Diaria')],
              'ExpoEner': [(0, 'Exportaciones Energía', 'Sistema', 'Horaria')],
              'AporCaudal': [(0, 'Aportes Caudal por Rio', 'Rio', 'Diaria')],
-             'AporCaudalMediHist': [(0, 'Aportes Media Histórica Caudal por Rio', 'Rio', 'Diaria')]
+             'AporCaudalMediHist': [(0, 'Aportes Media Histórica Caudal por Rio', 'Rio', 'Diaria')],
+             'DemaReal': [(0, 'Demanda Real por Sistema', 'Sistema', 'Horaria'),
+                          (1, 'Demanda Real por Agente', 'Agente', 'Horaria')],
              }
 
     def get_collections(self, coleccion):
