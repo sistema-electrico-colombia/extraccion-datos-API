@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from prefect import task, flow
 import time
 
-# Obtén las configuraciones de la base de datos de las variables de entorno
+# Variables de Entorno de la base de datos
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
 db_host = os.getenv('DB_HOST')
