@@ -70,6 +70,7 @@ class ReadDB:
              'AporCaudalMediHist': [(0, 'Aportes Media Histórica Caudal por Rio', 'Rio', 'Diaria')],
              'DemaReal': [(0, 'Demanda Real por Sistema', 'Sistema', 'Horaria'),
                           (1, 'Demanda Real por Agente', 'Agente', 'Horaria')],
+             'PrecEsca': [(0, 'Precio Escasez por Sistema', 'Sistema', 'Diaria')],
              }
 
     def get_collections(self, coleccion):
