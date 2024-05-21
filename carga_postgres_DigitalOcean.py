@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine
-from prefect import task, Flow
+from prefect import task, flow
 import time
 
 # Obtén las configuraciones de la base de datos de las variables de entorno
@@ -14,7 +14,7 @@ db_name = os.getenv('DB_NAME')
 engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
 
 # Ruta a la carpeta con archivos JSON
-folder_path = '/ruta/a/tu/carpeta'
+folder_path = './data/'
 
 @task
 def list_files(folder_path):
@@ -47,7 +47,8 @@ def get_file_path(folder_path, file_name):
     """Obtiene la ruta completa del archivo."""
     return os.path.join(folder_path, file_name)
 
-with Flow("Cargar JSON a PostgreSQL") as flow:
+@flow
+def flujo_carga():
     files = list_files(folder_path)
     for file_name in files:
         file_path = get_file_path(folder_path, file_name)
@@ -56,4 +57,4 @@ with Flow("Cargar JSON a PostgreSQL") as flow:
         load_to_postgres(df, table_name)
 
 if __name__=="__main__":
-    flow.run()
+    flujo_carga()
