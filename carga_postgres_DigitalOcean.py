@@ -16,6 +16,18 @@ engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}:{db_port
 # Ruta a la carpeta con archivos JSON
 folder_path = './data/'
 
+def convertir_a_numerico(columna):
+    # Intentar convertir a datetime para detectar si es una columna de fechas
+    try:
+        pd.to_datetime(columna)
+        return columna  # Si no hay error, es una columna de fechas, devolverla sin cambios
+    except (ValueError, TypeError):
+        # Intentar convertir a numérico si no es una columna de fechas
+        try:
+            return pd.to_numeric(columna)
+        except ValueError:
+            return columna
+
 @task
 def list_files(folder_path):
     """Lista todos los archivos JSON en la carpeta especificada."""
@@ -26,6 +38,7 @@ def list_files(folder_path):
 def read_json_file(file_path):
     """Lee un archivo JSON y lo convierte en un DataFrame de pandas."""
     df = pd.read_json(file_path, lines=True)
+    df = df.apply(convertir_a_numerico)
     return df
 
 @task
